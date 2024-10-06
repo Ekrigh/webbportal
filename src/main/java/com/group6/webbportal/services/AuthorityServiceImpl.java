@@ -25,6 +25,7 @@ public class AuthorityServiceImpl implements AuthorityService {
         return authorityRepository.save(authority);
     }
 
+    @Transactional
     @Override
     public void delete(Authority authority) {
         authorityRepository.delete(authority);
