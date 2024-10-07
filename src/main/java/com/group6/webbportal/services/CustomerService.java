@@ -5,6 +5,7 @@ import com.group6.webbportal.entities.Customer;
 import java.util.List;
 
 public interface CustomerService {
+    Customer findById(int id);
     List<Customer> findAll();
 
     Customer createCustomer(CustomerDTO customerDTO);

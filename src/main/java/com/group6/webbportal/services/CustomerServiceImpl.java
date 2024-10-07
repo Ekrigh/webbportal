@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
@@ -32,6 +33,11 @@ public class CustomerServiceImpl implements CustomerService {
         authorityService = authService;
         userService = usrService;
         passwordEncoder = bCryptPasswordEncoder;
+    }
+
+    @Override
+    public Customer findById(int id) {
+        return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " doesn't exist"));
     }
 
     @Override

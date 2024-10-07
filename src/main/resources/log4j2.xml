@@ -1,4 +1,3 @@
-<!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration status="INFO">
     <Appenders>
@@ -10,13 +9,13 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="myLogger" level="error" additivity="false">
-            <AppenderRef ref="MyFile" level="error"/>
+        <Logger name="myLogger" level="INFO" additivity="false">
+            <AppenderRef ref="MyFile"/>
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="all">
+        <Root level="ERROR">
             <AppenderRef ref="MyFile"/>
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
-</Configuration>-->
+</Configuration>
