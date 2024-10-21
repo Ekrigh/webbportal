@@ -24,19 +24,19 @@ public class CustomerController {
         customerService = custService;
     }
 
-    @GetMapping("/customers")
+    @GetMapping("/api/v1/customers")
     public List<Customer> findAll() {
         return customerService.findAll();
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/api/v1/customers")
     public ResponseEntity<String> createCustomer(@Valid @RequestBody CustomerDTO customerDTO, Authentication authentication) {
         customerService.createCustomer(customerDTO);
         logger.info("{} with role(s){}, added user {}.", authentication.getName(), authentication.getAuthorities(), customerDTO.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).body("Customer created successfully.");
     }
 
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping("/api/v1/customers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable int id, Authentication authentication) {
         String userName = customerService.findById(id).getUser().getUsername();
@@ -44,7 +44,7 @@ public class CustomerController {
         logger.info("{} with role(s){}, deleted user {}.", authentication.getName(), authentication.getAuthorities(), userName);
     }
 
-    @PutMapping("/customers/{id}")
+    @PutMapping("/api/v1/customers/{id}")
     public ResponseEntity<String> updateCustomer(@PathVariable("id") int id, @Valid @RequestBody CustomerDTO customerDTO, Authentication authentication) {
         customerService.updateCustomer(id, customerDTO);
         logger.info("{} with role(s){}, updated user {}.", authentication.getName(), authentication.getAuthorities(), customerService.findById(id).getUser().getUsername());

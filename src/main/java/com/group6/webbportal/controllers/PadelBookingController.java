@@ -28,7 +28,7 @@ public class PadelBookingController {
         this.padelTimeSlotService = padelTimeSlotService;
     }
 
-    @GetMapping("/bookings")
+    @GetMapping("/api/v1/bookings")
     public ResponseEntity<List<PadelTimeSlot>> listTimeSlots(Authentication authentication) {
 
         boolean isAdmin = false;
@@ -47,19 +47,19 @@ public class PadelBookingController {
         }
     }
 
-    @GetMapping("/bookings/{id}")
+    @GetMapping("/api/v1/bookings/{id}")
     public ResponseEntity<List<PadelBooking>> listBookingsByUser(@PathVariable int id, Authentication authentication) {
         return ResponseEntity.ok(padelBookingService.findAllByCustomerId(id, authentication));
     }
 
-    @PostMapping("/bookings")
+    @PostMapping("/api/v1/bookings")
     public ResponseEntity<String> createBooking(@Valid @RequestBody PadelBooking padelBooking, Authentication authentication) {
         PadelBooking createdBooking = padelBookingService.create(padelBooking, authentication);
         logger.info("{} with role(s){}, added booking-id: {}.", authentication.getName(), authentication.getAuthorities(), padelBooking.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body("Booking created successfully.");
     }
 
-    @PutMapping("/bookings/{id}")
+    @PutMapping("/api/v1/bookings/{id}")
     public ResponseEntity<String> updateBooking(@Valid
                                                 @PathVariable int id,
                                                 @RequestBody PadelBooking padelBooking, Authentication authentication) {
@@ -68,7 +68,7 @@ public class PadelBookingController {
         return ResponseEntity.ok("Booking updated successfully.");
     }
 
-    @DeleteMapping("/bookings/{id}")
+    @DeleteMapping("/api/v1/bookings/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBooking(@PathVariable int id, Authentication authentication) {
         padelBookingService.deleteBooking(id);
