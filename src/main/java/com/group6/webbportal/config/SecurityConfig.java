@@ -16,18 +16,22 @@ import javax.sql.DataSource;
 public class SecurityConfig {
 
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource datasource) {
-        return new JdbcUserDetailsManager(datasource);
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean
-    public SecurityFilterChain securityFilterchain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers(HttpMethod.GET, "/api/v1/customers").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/customers").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/customers/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/customers/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/courts").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/courts/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/bookings/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/bookings").hasRole("ADMIN")
                         .anyRequest().authenticated()
         );
         http.httpBasic(Customizer.withDefaults());

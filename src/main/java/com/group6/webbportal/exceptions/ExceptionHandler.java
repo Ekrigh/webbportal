@@ -24,6 +24,6 @@ public class ExceptionHandler {
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(exception.getMessage());
         error.setTimestamp(System.currentTimeMillis());
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

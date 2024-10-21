@@ -39,8 +39,9 @@ public class CustomerController {
     @DeleteMapping("/customers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable int id, Authentication authentication) {
+        String userName = customerService.findById(id).getUser().getUsername();
         customerService.deleteById(id);
-        logger.info("{} with role(s){}, deleted user {}.", authentication.getName(), authentication.getAuthorities(), customerService.findById(id).getUser().getUsername());
+        logger.info("{} with role(s){}, deleted user {}.", authentication.getName(), authentication.getAuthorities(), userName);
     }
 
     @PutMapping("/customers/{id}")

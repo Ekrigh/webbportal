@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PadelCourtRepository extends JpaRepository<PadelCourt, Integer> {
+    PadelCourt findById(int id);
+    boolean existsByName(String name);
 }

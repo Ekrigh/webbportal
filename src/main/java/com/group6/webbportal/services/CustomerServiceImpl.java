@@ -41,6 +41,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer findByUser(User user) {
+        return customerRepository.findByUser(user)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found for user: " + user.getUsername()));
+    }
+
+    @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
