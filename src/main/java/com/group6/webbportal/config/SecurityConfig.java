@@ -34,8 +34,19 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/customers/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/courts").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/courts/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/bookings/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/bookings").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/padel/bookings/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/padel/bookings").hasRole("ADMIN")
+
+                        //Sushi
+                        .requestMatchers(HttpMethod.GET, "/api/v1/sushis").hasAnyRole("USER","ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/sushis/admin").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/sushis/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/sushis/user").hasRole("USER")
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/sushi/bookings").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/sushi/bookings/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/sushi/bookings/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/sushi/rooms/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated()
         );
         http.httpBasic(Customizer.withDefaults());

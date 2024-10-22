@@ -15,7 +15,7 @@ public class SushiBooking {
     @Column(name = "guest_count")
     private int guestCount;
     @Column(name = "total_price_sek")
-    private Double totalPriceSEK;
+    private String totalPriceSEK;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -38,7 +38,7 @@ public class SushiBooking {
     public SushiBooking() {
     }
 
-    public SushiBooking(int guestCount, Double totalPriceSEK, Customer customer, SushiRoom sushiRoom, List<DishQuantity> dishQuantities) {
+    public SushiBooking(int guestCount, String totalPriceSEK, Customer customer, SushiRoom sushiRoom, List<DishQuantity> dishQuantities) {
         this.guestCount = guestCount;
         this.totalPriceSEK = totalPriceSEK;
         this.customer = customer;
@@ -62,11 +62,11 @@ public class SushiBooking {
         this.guestCount = guestCount;
     }
 
-    public Double getTotalPriceSEK() {
+    public String getTotalPriceSEK() {
         return totalPriceSEK;
     }
 
-    public void setTotalPriceSEK(Double totalPriceSEK) {
+    public void setTotalPriceSEK(String totalPriceSEK) {
         this.totalPriceSEK = totalPriceSEK;
     }
 

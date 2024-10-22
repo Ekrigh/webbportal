@@ -17,15 +17,17 @@ public class SushiBookingServiceImpl implements SushiBookingService{
     private CustomerRepository customerRepository;
     private SushiDishRepository sushiDishRepository;
     private DishQuantityRepository dishQuantityRepository;
+    private CurrencyConversionService currencyConversionService;
 
     @Autowired
     public SushiBookingServiceImpl(SushiRoomRepository sushiRoomRepo, SushiBookingRepository sushiBookingRepo, CustomerRepository customerRepo, SushiDishRepository sushiDishRepo,
-    DishQuantityRepository dishQuantityRepo) {
+    DishQuantityRepository dishQuantityRepo, CurrencyConversionService currencyConversionServ) {
         sushiRoomRepository = sushiRoomRepo;
         sushiBookingRepository = sushiBookingRepo;
         customerRepository = customerRepo;
         sushiDishRepository = sushiDishRepo;
         dishQuantityRepository = dishQuantityRepo;
+        currencyConversionService = currencyConversionServ;
     }
 
     @Override
@@ -48,7 +50,9 @@ public class SushiBookingServiceImpl implements SushiBookingService{
 
         List<DishQuantity> dishQuantities = new ArrayList<>();
 
-        double totalPrice = 0.0;
+        double totalPriceSek = 0.0;
+        double totalPriceYen = 0.0;
+
 
         for (DishQuantity dishQuantity : sushiBooking.getDishQuantities()) {
             SushiDish sushiDish = sushiDishRepository.findById(dishQuantity.getSushiDish().getId())
@@ -63,10 +67,11 @@ public class SushiBookingServiceImpl implements SushiBookingService{
 
             dishQuantities.add(savedDishQuantity);
 
-            totalPrice += sushiDish.getPriceSEK() * dishQuantity.getQuantity();
+            totalPriceSek += sushiDish.getPriceSEK() * dishQuantity.getQuantity();
+            totalPriceYen =currencyConversionService.convertSEKtoYEN(totalPriceSek);
         }
 
-        sushiBooking.setTotalPriceSEK(totalPrice);
+        sushiBooking.setTotalPriceSEK(totalPriceSek + " SEK / " + totalPriceYen + " YEN");
 
         sushiBooking.setDishQuantities(dishQuantities);
 
@@ -113,7 +118,7 @@ public class SushiBookingServiceImpl implements SushiBookingService{
             totalPrice += sushiDish.getPriceSEK() * dishQuantity.getQuantity();
         }
 
-        existingBooking.setTotalPriceSEK(totalPrice);
+        existingBooking.setTotalPriceSEK(String.valueOf(totalPrice));
         existingBooking.setDishQuantities(updatedDishQuantities);
 
         return sushiBookingRepository.save(existingBooking);

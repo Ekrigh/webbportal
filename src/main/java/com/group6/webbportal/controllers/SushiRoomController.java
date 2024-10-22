@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.group6.webbportal.WebbPortalApplication.logger;
 
 @RestController
-@RequestMapping()
+@RequestMapping("api/v1")
 public class SushiRoomController {
 
     private SushiRoomService sushiRoomService;
@@ -18,7 +18,7 @@ public class SushiRoomController {
         sushiRoomService = sushiRoomServ;
     }
 
-    @PutMapping("/rooms/{id}")
+    @PutMapping("/sushi/rooms/{id}")
     public ResponseEntity<SushiRoom> updateRoom(@PathVariable int id, @RequestBody SushiRoom sushiRoom, Authentication authentication){
         if (sushiRoom == null){
             throw new RuntimeException("Sushi room id " + id + " does not exist");
