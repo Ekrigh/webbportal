@@ -17,6 +17,7 @@ import java.util.List;
 import static com.group6.webbportal.WebbPortalApplication.logger;
 
 @RestController
+@RequestMapping("/api/v1/padel")
 public class PadelBookingController {
 
     private final PadelBookingService padelBookingService;
@@ -28,7 +29,7 @@ public class PadelBookingController {
         this.padelTimeSlotService = padelTimeSlotService;
     }
 
-    @GetMapping("/api/v1/bookings")
+    @GetMapping("/bookings")
     public ResponseEntity<List<PadelTimeSlot>> listTimeSlots(Authentication authentication) {
 
         boolean isAdmin = false;
@@ -47,19 +48,19 @@ public class PadelBookingController {
         }
     }
 
-    @GetMapping("/api/v1/bookings/{id}")
+    @GetMapping("/bookings/{id}")
     public ResponseEntity<List<PadelBooking>> listBookingsByUser(@PathVariable int id, Authentication authentication) {
         return ResponseEntity.ok(padelBookingService.findAllByCustomerId(id, authentication));
     }
 
-    @PostMapping("/api/v1/bookings")
+    @PostMapping("/bookings")
     public ResponseEntity<String> createBooking(@Valid @RequestBody PadelBooking padelBooking, Authentication authentication) {
         PadelBooking createdBooking = padelBookingService.create(padelBooking, authentication);
         logger.info("{} with role(s){}, added booking-id: {}.", authentication.getName(), authentication.getAuthorities(), padelBooking.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body("Booking created successfully.");
     }
 
-    @PutMapping("/api/v1/bookings/{id}")
+    @PutMapping("/bookings/{id}")
     public ResponseEntity<String> updateBooking(@Valid
                                                 @PathVariable int id,
                                                 @RequestBody PadelBooking padelBooking, Authentication authentication) {
@@ -68,7 +69,7 @@ public class PadelBookingController {
         return ResponseEntity.ok("Booking updated successfully.");
     }
 
-    @DeleteMapping("/api/v1/bookings/{id}")
+    @DeleteMapping("/bookings/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBooking(@PathVariable int id, Authentication authentication) {
         padelBookingService.deleteBooking(id);

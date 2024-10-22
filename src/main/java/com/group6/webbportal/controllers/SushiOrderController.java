@@ -14,7 +14,7 @@ import static com.group6.webbportal.WebbPortalApplication.logger;
 
 
 @RestController
-@RequestMapping()
+@RequestMapping("api/v1")
 public class SushiOrderController {
 
     private final SushiOrderService sushiOrderService;

@@ -49,4 +49,15 @@ public class CurrencyConversionService {
 
         return priceInSEK * (eurRate / sekRate);
     }
+    public double convertSEKtoYEN(double priceInSEK){
+        String url = apiUrl + "?app_id=" + appId;
+
+        ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
+
+        Map<String, Object> rates = (Map<String, Object>) response.getBody().get("rates");
+        Double sekRate = (Double) rates.get("SEK"); // SEK rate
+        Double yenRate = (Double) rates.get("JPY"); // YEN rate
+
+        return priceInSEK * (yenRate / sekRate);
+    }
 }

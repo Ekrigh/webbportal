@@ -12,7 +12,7 @@ import java.util.List;
 import static com.group6.webbportal.WebbPortalApplication.logger;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/api/v1/sushi")
 public class SushiBookingController {
 
     private SushiBookingService sushiBookingService;
