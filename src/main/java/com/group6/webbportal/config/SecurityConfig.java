@@ -47,6 +47,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/v1/sushi/bookings/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/api/v1/sushi/bookings/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/sushi/rooms/{id}").hasRole("ADMIN")
+
+                        //Cinema
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/cinema/rooms/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/movies").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/movies/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/movies").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/cinema/bookings/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/cinema/bookings").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/cinema/bookings/**").hasRole("USER")
                         .anyRequest().authenticated()
         );
         http.httpBasic(Customizer.withDefaults());
