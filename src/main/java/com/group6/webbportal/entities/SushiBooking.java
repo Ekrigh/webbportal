@@ -26,14 +26,6 @@ public class SushiBooking {
     private SushiRoom sushiRoom;
     @OneToMany(mappedBy = "sushiBooking")
     private List<DishQuantity> dishQuantities = new ArrayList<>();
-//    @ManyToMany
-//    @JoinTable(
-//            name = "sushi_bookings_dishes",
-//            joinColumns = @JoinColumn(name = "booking_id"),
-//            inverseJoinColumns = @JoinColumn(name = "sushi_dish_id")
-//    )
-//    private List<SushiDish> dishes;
-
 
     public SushiBooking() {
     }

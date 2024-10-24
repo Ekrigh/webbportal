@@ -1,7 +1,6 @@
 package com.group6.webbportal.controllers;
 
 import com.group6.webbportal.entities.SushiBooking;
-import com.group6.webbportal.entities.SushiRoom;
 import com.group6.webbportal.services.SushiBookingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,7 +23,7 @@ public class SushiBookingController {
     @PostMapping("/bookings")
     public ResponseEntity<SushiBooking> createBooking(@RequestBody SushiBooking sushiBooking, Authentication authentication) {
         SushiBooking booking = sushiBookingService.makeBooking(sushiBooking, sushiBooking.getDishQuantities());
-        logger.info("User '{}' with role(s){}, made a booking in room '{}'.",authentication.getName(), authentication.getAuthorities(),sushiBooking.getSushiRoom().getName());
+        logger.info("'{}' with role(s){}, made a booking in room '{}'.",authentication.getName(), authentication.getAuthorities(),sushiBooking.getSushiRoom().getName());
         return ResponseEntity.ok(booking);
     }
 
@@ -35,7 +34,7 @@ public class SushiBookingController {
         }
         SushiBooking updatedBooking = sushiBookingService.updateBooking(sushiBooking, id);
 
-        logger.info("User '{}' with role(s){}, updated a booking with id: '{}'.", authentication.getName(), authentication.getAuthorities(),updatedBooking.getId());
+        logger.info("{} with role(s){}, updated a booking with id: '{}'.", authentication.getName(), authentication.getAuthorities(),updatedBooking.getId());
         return ResponseEntity.ok(sushiBookingService.updateBooking(sushiBooking, id));
     }
 

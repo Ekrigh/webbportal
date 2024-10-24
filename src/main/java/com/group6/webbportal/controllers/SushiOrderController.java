@@ -26,8 +26,7 @@ public class SushiOrderController {
     @PostMapping("/sushis/user")
     public ResponseEntity<SushiOrder> createOrder(@RequestBody SushiOrder order, Authentication authentication) {
         SushiOrder savedOrder = sushiOrderService.createOrder(order);
-        logger.info("User '{}' with role(s){}, made an order with id {}.", authentication.getName(), authentication.getAuthorities(), order.getId());
+        logger.info("{} with role(s){}, made an order with id {}.", authentication.getName(), authentication.getAuthorities(), order.getId());
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
 }
-

@@ -1,12 +1,6 @@
-2024-10-23 14:19:45:365 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
-2024-10-23 14:19:46:658 [restartedMain] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-23 14:19:46:717 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-10-23 14:19:46:752 [restartedMain] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2024-10-23 14:19:48:492 [restartedMain] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-23 14:22:03:845 [http-nio-8585-exec-4] INFO  myLogger - myadmin [ROLE_ADMIN] updated cinema room [nytt rum3].
-2024-10-23 14:22:13:272 [http-nio-8585-exec-5] INFO  myLogger - myadmin [ROLE_ADMIN] added movie [Inception3].
-2024-10-23 14:22:44:745 [http-nio-8585-exec-6] INFO  myLogger - th [ROLE_USER] created a cinema booking [4135FBEF].
-2024-10-23 14:22:54:945 [http-nio-8585-exec-7] INFO  myLogger - th [ROLE_USER] updated cinema booking [4135FBEF].
-2024-10-23 14:23:59:371 [http-nio-8585-exec-9] INFO  myLogger - myadmin with role(s)[ROLE_ADMIN], added user ek.
-2024-10-23 14:25:07:209 [http-nio-8585-exec-2] INFO  myLogger - myadmin with role(s)[ROLE_ADMIN], updated user ek.
-2024-10-23 14:25:26:697 [http-nio-8585-exec-3] INFO  myLogger - myadmin with role(s)[ROLE_ADMIN], deleted user jp.
+2024-10-24 09:58:29:595 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2024-10-24 09:58:30:847 [restartedMain] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-24 09:58:30:889 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-10-24 09:58:30:913 [restartedMain] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-10-24 09:58:32:335 [restartedMain] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-24 09:59:13:301 [http-nio-8585-exec-3] INFO  myLogger - myadmin with role(s)[ROLE_ADMIN], added user aj.
