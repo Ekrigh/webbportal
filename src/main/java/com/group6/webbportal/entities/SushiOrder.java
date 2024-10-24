@@ -1,10 +1,7 @@
 package com.group6.webbportal.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,15 +20,6 @@ public class SushiOrder {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
-//    @ManyToMany
-//    @JoinTable(
-//            name = "sushi_order_dishes",
-//            joinColumns = @JoinColumn(name = "order_id"),
-//            inverseJoinColumns = @JoinColumn(name = "dish_id")
-//    )
-//    private List<SushiDish> dishes;
-
 
     public SushiOrder() {
     }

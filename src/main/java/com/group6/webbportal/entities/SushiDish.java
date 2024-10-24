@@ -2,8 +2,6 @@ package com.group6.webbportal.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "sushidishes")
 public class SushiDish {
@@ -17,9 +15,6 @@ public class SushiDish {
     private String description;
     @Column(name = "price_sek")
     private Double priceSEK;
-//    @ManyToMany(mappedBy = "dishes")
-//    private List<SushiOrder> orders;
-
 
     public SushiDish() {
     }
@@ -62,7 +57,4 @@ public class SushiDish {
     public void setPriceSEK(Double priceSEK) {
         this.priceSEK = priceSEK;
     }
-
 }
-
-

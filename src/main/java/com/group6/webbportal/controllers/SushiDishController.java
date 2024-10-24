@@ -28,7 +28,7 @@ public class SushiDishController {
     public SushiDish addSushi(@RequestBody SushiDish sushiDish, Authentication authentication){
         sushiDish.setId(0L);
         SushiDish s = sushiDishService.save(sushiDish);
-        logger.info("User '{}' with role(s){}, added sushi dish '{}'.",authentication.getName(), authentication.getAuthorities(),sushiDish.getName());
+        logger.info("{} with role(s){}, added sushi dish '{}'.",authentication.getName(), authentication.getAuthorities(),sushiDish.getName());
         return s;
     }
 
@@ -39,7 +39,7 @@ public class SushiDishController {
             throw new RuntimeException("Sushi dish with id " + id + " not found");
         }
         sushiDishService.deleteById(id);
-        logger.info("User '{}' with role(s){}, deleted sushi dish '{}'.", authentication.getName(), authentication.getAuthorities(), sushiDish.getName());
+        logger.info("{} with role(s){}, deleted sushi dish '{}'.", authentication.getName(), authentication.getAuthorities(), sushiDish.getName());
         return "Sushi dish with id " + id + " deleted";
     }
 }
