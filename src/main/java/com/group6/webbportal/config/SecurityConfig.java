@@ -57,6 +57,17 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/cinema/bookings").hasRole("USER")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/cinema/bookings/**").hasRole("USER")
                         .anyRequest().authenticated()
+
+                        // Travels
+                        .requestMatchers(HttpMethod.GET, "/api/v1/trips").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/trips").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/trips/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/trips/{id}").hasRole("USER")
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/destinations").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/destinations/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/destinations/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/destinations").hasAnyRole("USER", "ADMIN")
         );
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());

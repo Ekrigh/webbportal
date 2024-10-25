@@ -60,4 +60,18 @@ public class CurrencyConversionService {
 
         return priceInSEK * (yenRate / sekRate);
     }
+    public double convertSEKToPLN(double priceInSEK) {
+        // URL for fetching latest exchange rates with USD as base (default)
+        String url = apiUrl + "?app_id=" + appId;
+
+        // Make the API call
+        ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
+
+        // Extract the rates from the response
+        Map<String, Object> rates = (Map<String, Object>) response.getBody().get("rates");
+        Double sekRate = (Double) rates.get("SEK"); // SEK to PLN rate
+
+        // Perform the conversion: SEK to PLN
+        return priceInSEK / sekRate;
+    }
 }
